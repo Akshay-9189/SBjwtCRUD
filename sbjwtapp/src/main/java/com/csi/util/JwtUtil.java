@@ -14,8 +14,8 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    // USe can use any secrete (Used for encoding purpose)
-    private String secret = "akshay@99";
+    // Use can use any secrete (Used for encoding purpose)
+    final String secret = "akshay@99";
 
     //pass the jwt token this method will give exact username
     public String extractUsername(String token) {
@@ -50,10 +50,14 @@ public class JwtUtil {
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
-
-        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+        return Jwts
+                .builder()
+                .setClaims(claims)
+                .setSubject(subject)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(SignatureAlgorithm.HS256, secret).compact();
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
     }
 
     //validating token

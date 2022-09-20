@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface UserDetailsRepo extends JpaRepository<UserDetailsInfo, Integer> {
 
     UserDetailsInfo findByUserName(String userName);
+
+    UserDetailsInfo findByUserId(int userId);
 }
